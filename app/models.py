@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from typing import Optional
 import sqlalchemy as sa 
 import sqlalchemy.orm as so
@@ -11,4 +12,19 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+    
+
+class Entry(db.Model):
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    firstname: so.Mapped[str] = so.mapped_column(sa.String(100))
+    lastname: so.Mapped[str] = so.mapped_column(sa.String(100))
+    middlename: so.Mapped[str] = so.mapped_column(sa.String(100))
+    age: so.Mapped[int] = so.mapped_column(sa.Integer(100))
+    address: so.Mapped[str] = so.mapped_column(sa.String(100))
+    timestamp: so.Mapped[datetime] = so.mapped_column(index=True, default=lambda: datetime.now(timezone.utc))
+    
+    def __repr__(self):
+
+        return 'Entry {}>'.format(self.firstname)
+    
     

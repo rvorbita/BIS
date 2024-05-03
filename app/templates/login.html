@@ -1,0 +1,22 @@
+{% extends "header.html" %}
+{% block content %}
+
+    <h1>Sign In</h1>
+    <form method="POST">
+      {{ form.hidden_tag() }}  
+      <p>{{ form.username.label }} {{ form.username(type='text',size=32) }}</p>
+      {% for error in form.username.errors %}
+        <span style="color:red"> {{ error.message }}</span>
+      {% endfor %}
+
+      <p>{{ form.password.label }} {{ form.password(size=32) }}</p>
+      {% for error in form.password.errors %}
+        <span style="color:red"> {{ error.message }}</span>
+      {% endfor %}
+
+      <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+      <p>{{ form.submit() }} </p>
+    </form>
+
+{% endblock %}
+

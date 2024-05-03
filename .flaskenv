@@ -1,0 +1,2 @@
+FLASK_APP=bsi.py
+FLASK_DEBUG=True

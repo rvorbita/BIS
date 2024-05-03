@@ -1,16 +1,15 @@
 from flask import render_template, redirect, url_for, flash
 from app import app
-from app.forms import RegistrationForm,EntryForm
+from app.forms import RegistrationForm, EntryForm, LoginForm
 
 
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('entry.html')
+    return render_template('index.html')
 
 
-
-@app.route('/entry')
+@app.route('/add_entry')
 def add_entry():
     
     form = EntryForm()
@@ -22,6 +21,18 @@ def add_entry():
         db.session.commit()
         flash('Entry addedd successfully')
     return render_template('entry.html', form=form)
+
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        flash('Login requested for user {}, remember_me={}'. format(form.username.data, form.remember_me.data))
+        return redirect(url_for('index'))
+    return render_template('login.html', form=form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

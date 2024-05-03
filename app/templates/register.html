@@ -1,0 +1,23 @@
+{% extend "header.html" %}
+{% block content %}
+
+    <h1>Register</h1>
+    <form method="POST">
+      {{ form.hidden_tag() }}  
+      <p>{{ form.username.label }} {{ form.username(type='text') }}</p>
+      <p>{{ form.email.label }} {{ form.email(type='email') }}</p>
+      <p>{{ form.password.label }} {{ form.password(type='password') }}</p>
+      <p>{{ form.confirm.label }} {{ form.confirm(type='password') }}</p>
+      <p>{{ form.accept_tos.label }} {{ form.accept_tos() }}</p>
+      <button type="submit">Register</button>
+    </form>
+    {% if form.errors %}
+      <ul>
+        {% for error in form.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+{% endblock %}
+

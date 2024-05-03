@@ -1,0 +1,23 @@
+{% extend "header.html" %}
+{% block content %}
+
+    <h1>New Entry</h1>
+    <form method="POST">
+      {{ form.hidden_tag() }}  
+      <p>{{ form.fname.label }} {{ form.username(type='text') }}</p>
+      <p>{{ form.lname.label }} {{ form.lname(type='text') }}</p>
+      <p>{{ form.mname.label }} {{ form.mname(type='text') }}</p>
+      <p>{{ form.age.label }} {{ form.age(type='number') }}</p>
+      <p>{{ form.address.label }} {{ form.address(type='text') }}</p>
+      <button type="submit">Submit</button>
+    </form>
+    {% if form.errors %}
+      <ul>
+        {% for error in form.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+{% endblock %}
+
